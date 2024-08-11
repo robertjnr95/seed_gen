@@ -1,32 +1,32 @@
-# Compiler
+# Makefile for seed_gen
+
+# Compiler and flags
 CXX = g++
+CXXFLAGS = -std=c++17 -Wall -I./jsoncpp/include -I./csv-parser/include
 
-# Flags for compiling
-CXXFLAGS = -std=c++11 -Wall
+# Linker flags
+LDFLAGS = -L./jsoncpp/lib -ljsoncpp -L./csv-parser/lib -lcsv-parser
 
-# Target executable name
+# Target executable
 TARGET = seed_gen
 
 # Source files
-SRCS = seed_gen.cpp crypto_library.cpp
+SRCS = seed_gen.cpp
 
-# Object files (replace .cpp with .o)
+# Object files
 OBJS = $(SRCS:.cpp=.o)
 
-# Libraries (if any)
-LIBS = -lcrypto -lboost_system
-
-# Default rule to build the target executable
+# Default target
 all: $(TARGET)
 
-# Rule to build the target executable
+# Link the executable
 $(TARGET): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS) $(LIBS)
+	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS) $(LDFLAGS)
 
-# Rule to compile .cpp files into .o files
+# Compile source files
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# Rule to clean the build (removes the executable and object files)
+# Clean up build files
 clean:
 	rm -f $(TARGET) $(OBJS)
