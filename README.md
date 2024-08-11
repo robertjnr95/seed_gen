@@ -26,7 +26,7 @@ Clone the Repository:
 
 git clone https://github.com/robertjnr95/seed_gen.git
 
-cd seed-checker
+cd seed_gen
 
 Install Dependencies:
 
