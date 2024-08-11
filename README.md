@@ -1,6 +1,6 @@
-#Seed Phrase Wallet Address Checker
+**Seed Phrase Wallet Address Checker**
 
-#Overview
+**Overview**
 This project is a C++ implementation that checks if a given seed phrase can generate a specified Bitcoin wallet address. It takes a wordlist and a target wallet address as input, and optionally allows the user to specify the length of the seed phrase. The program uses cryptographic standards such as BIP-39, BIP-32, and BIP-44 to derive the wallet address from the seed phrase.
 
 #Features
