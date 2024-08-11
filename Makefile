@@ -5,16 +5,16 @@ CXX = g++
 CXXFLAGS = -std=c++11 -Wall
 
 # Target executable name
-TARGET = seed_checker
+TARGET = seed_gen
 
 # Source files
-SRCS = main.cpp crypto_library.cpp
+SRCS = seed_gen.cpp crypto_library.cpp
 
 # Object files (replace .cpp with .o)
 OBJS = $(SRCS:.cpp=.o)
 
-# Libraries (if you need to link against any specific libraries)
-LIBS = -lcrypto -lboost_system # Example for linking OpenSSL and Boost libraries
+# Libraries (if any)
+LIBS = -lcrypto -lboost_system
 
 # Default rule to build the target executable
 all: $(TARGET)
