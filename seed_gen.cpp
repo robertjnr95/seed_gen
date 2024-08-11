@@ -3,6 +3,8 @@
 #include <vector>
 #include <algorithm>
 #include <iterator>
+#include <chrono>
+#include <iomanip>
 #include "crypto_library.h"
 
 // Function to check if a seed phrase generates the given wallet address
@@ -28,6 +30,16 @@ void generateCombinations(const std::vector<std::string>& wordlist, int seedLeng
 
     // Use indices to generate combinations
     std::vector<int> indices(seedLength, 0);
+    long long totalCombinations = 1;
+    for (int i = 0; i < seedLength; ++i) {
+        totalCombinations *= wordlist.size();
+    }
+
+    auto startTime = std::chrono::high_resolution_clock::now();
+    long long count = 0;
+    long long lastCount = 0;
+    auto lastTime = startTime;
+
     while (true) {
         // Fill the combination vector with words based on current indices
         for (int i = 0; i < seedLength; ++i) {
@@ -56,6 +68,29 @@ void generateCombinations(const std::vector<std::string>& wordlist, int seedLeng
             }
         }
         if (pos < 0) break; // If we finished all combinations
+
+        // Update statistics
+        ++count;
+        if (count % 10000 == 0) { // Update stats every 10,000 combinations
+            auto now = std::chrono::high_resolution_clock::now();
+            std::chrono::duration<double> elapsed = now - startTime;
+            std::chrono::duration<double> interval = now - lastTime;
+            double cps = (count - lastCount) / interval.count(); // Combinations per second
+            lastCount = count;
+            lastTime = now;
+
+            // ETA Calculation
+            double totalTime = elapsed.count();
+            double estimatedTotalTime = totalTime * (totalCombinations / count);
+            double eta = estimatedTotalTime - totalTime;
+
+            std::cout << std::fixed << std::setprecision(2)
+                      << "Processed: " << count << " combinations | "
+                      << "Speed: " << cps << " cps | "
+                      << "Elapsed Time: " << totalTime << " s | "
+                      << "ETA: " << eta << " s\r";
+            std::cout.flush();
+        }
     }
 
     std::cout << "No matching seed phrase found." << std::endl;
