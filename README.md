@@ -24,7 +24,7 @@ Boost Libraries: (Optional) Boost libraries may be required for additional funct
 
 Clone the Repository:
 
-git clone https://github.com/robertjnr95/seed-checker.git
+git clone https://github.com/robertjnr95/seed_gen.git
 
 cd seed-checker
 
