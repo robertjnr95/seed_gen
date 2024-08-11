@@ -48,7 +48,7 @@ This will create an executable file named seed_checker.
 
 To use the program, run the seed_checker executable with the following command-line arguments:
 
-./seed_checker <wordlist.txt> <wallet_address> [seed_length]
+./seed_gen <wordlist.txt> <wallet_address> [seed_length]
 
 wordlist.txt: A text file containing a list of words to be used as potential seed phrases.
 
@@ -58,7 +58,7 @@ seed_length: (Optional) The length of the seed phrase (default is 12).
 
 Example:
 
-./seed_checker wordlist.txt 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa 12
+./seed_gen wordlist.txt 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa 12
 
 This command will check if any 12-word seed phrase generated from the words in wordlist.txt matches the Bitcoin wallet address 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa.
 
